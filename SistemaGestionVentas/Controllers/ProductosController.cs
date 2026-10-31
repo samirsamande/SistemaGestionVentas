@@ -1,6 +1,5 @@
 
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SistemaGestionVentas.Models;
 
@@ -16,8 +15,7 @@ public class ProductosController : Controller
     // GET: PRODUCTOS
     public async Task<IActionResult> Index()    
     {
-        var sistemaGestionVentasContext = _context.Producto.Include(p => p.Categoria);
-        return View(await sistemaGestionVentasContext.ToListAsync());
+        return View(await _context.Producto.ToListAsync());
     }
 
     // GET: PRODUCTOS/Details/5
@@ -29,7 +27,6 @@ public class ProductosController : Controller
         }
 
         var producto = await _context.Producto
-            .Include(p => p.Categoria)
             .FirstOrDefaultAsync(m => m.Id == id);
         if (producto == null)
         {
@@ -42,8 +39,6 @@ public class ProductosController : Controller
     // GET: PRODUCTOS/Create
     public IActionResult Create()
     {
-        ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Nombre");
-
         return View();
     }
 
@@ -52,7 +47,7 @@ public class ProductosController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Nombre,Precio,Stock,CategoriaId")] Producto producto)
+    public async Task<IActionResult> Create([Bind("Id,Nombre,Precio,Stock,CategoriaId,Categoria")] Producto producto)
     {
         if (ModelState.IsValid)
         {
@@ -60,7 +55,6 @@ public class ProductosController : Controller
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Nombre", producto.CategoriaId);
         return View(producto);
     }
 
@@ -77,7 +71,6 @@ public class ProductosController : Controller
         {
             return NotFound();
         }
-        ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Nombre", producto.CategoriaId);
         return View(producto);
     }
 
@@ -86,7 +79,7 @@ public class ProductosController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int? id, [Bind("Id,Nombre,Precio,Stock,CategoriaId")] Producto producto)
+    public async Task<IActionResult> Edit(int? id, [Bind("Id,Nombre,Precio,Stock,CategoriaId,Categoria")] Producto producto)
     {
         if (id != producto.Id)
         {
@@ -113,7 +106,6 @@ public class ProductosController : Controller
             }
             return RedirectToAction(nameof(Index));
         }
-        ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Nombre", producto.CategoriaId);
         return View(producto);
     }
 
@@ -126,7 +118,6 @@ public class ProductosController : Controller
         }
 
         var producto = await _context.Producto
-            .Include(p => p.Categoria)
             .FirstOrDefaultAsync(m => m.Id == id);
         if (producto == null)
         {
