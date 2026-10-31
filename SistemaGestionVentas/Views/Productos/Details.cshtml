@@ -31,18 +31,12 @@
             @Html.DisplayFor(model => model.Stock)
         </dd>
     </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CategoriaId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CategoriaId)
-        </dd>
     </dl>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Categoria)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Categoria)
+            @Model.Categoria?.Nombre
         </dd>
     </dl>
 </div>

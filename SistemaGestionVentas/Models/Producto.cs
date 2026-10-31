@@ -17,12 +17,12 @@ public class Producto
     [Range(0.01, 100000, ErrorMessage = "El precio debe estar entre {1} y {2}.")]
     [Column(TypeName = "decimal(10,2)")]
     [Display(Name = "Precio (USD)")]
-    public decimal Precio { get; set; }
+    public decimal? Precio { get; set; }
 
     [Required(ErrorMessage = "El stock es obligatorio.")]
     [Range(0, 10000, ErrorMessage = "El stock debe estar entre {1} y {2}.")]
     [Display(Name = "Stock")]
-    public int Stock { get; set; }
+    public int? Stock { get; set; }
 
     [Range(1, int.MaxValue, ErrorMessage = "Debe seleccionar una categoría.")]
     [Display(Name = "Categoría")]

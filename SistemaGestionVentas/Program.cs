@@ -7,7 +7,14 @@ var connectionString = builder.Configuration.GetConnectionString("SistemaGestion
 builder.Services.AddDbContext<SistemaGestionVentasContext>(options => options.UseSqlServer(connectionString));
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddMvcOptions(options =>
+    {
+        var messages = options.ModelBindingMessageProvider;
+        messages.SetValueIsInvalidAccessor(x => $"El valor '{x}' no es válido.");
+        messages.SetAttemptedValueIsInvalidAccessor((x, y) => $"El valor '{x}' no es válido para este campo.");
+        messages.SetValueMustBeANumberAccessor(x => "El campo debe ser un número.");
+    });
 
 var app = builder.Build();
 

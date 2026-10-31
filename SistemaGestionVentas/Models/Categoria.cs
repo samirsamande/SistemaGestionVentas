@@ -12,9 +12,10 @@ public class Categoria
     [Display(Name = "Nombre")]
     public string Nombre { get; set; } = string.Empty;
 
+    [Required(ErrorMessage = "La descripción es obligatoria.")]
     [StringLength(250, ErrorMessage = "La descripción no puede superar los {1} caracteres.")]
     [Display(Name = "Descripción")]
-    public string? Descripcion { get; set; }
+    public string? Descripcion { get; set; } 
 
     public ICollection<Producto> Productos { get; set; } = new List<Producto>();
 }
