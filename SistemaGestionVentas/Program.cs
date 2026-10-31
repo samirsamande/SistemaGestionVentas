@@ -1,4 +1,8 @@
+using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("SistemaGestionVentasContext") ?? throw new InvalidOperationException("Connection string 'SistemaGestionVentasContext' not found.");
+
+builder.Services.AddDbContext<SistemaGestionVentasContext>(options => options.UseSqlServer(connectionString));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
