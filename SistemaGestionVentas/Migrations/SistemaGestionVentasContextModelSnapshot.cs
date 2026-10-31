@@ -20,6 +20,28 @@ namespace SistemaGestionVentas.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("SistemaGestionVentas.Models.Categoria", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Descripcion")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categoria");
+                });
+
             modelBuilder.Entity("SistemaGestionVentas.Models.Producto", b =>
                 {
                     b.Property<int>("Id")
@@ -27,6 +49,9 @@ namespace SistemaGestionVentas.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -41,7 +66,25 @@ namespace SistemaGestionVentas.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoriaId");
+
                     b.ToTable("Producto");
+                });
+
+            modelBuilder.Entity("SistemaGestionVentas.Models.Producto", b =>
+                {
+                    b.HasOne("SistemaGestionVentas.Models.Categoria", "Categoria")
+                        .WithMany("Productos")
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categoria");
+                });
+
+            modelBuilder.Entity("SistemaGestionVentas.Models.Categoria", b =>
+                {
+                    b.Navigation("Productos");
                 });
 #pragma warning restore 612, 618
         }
