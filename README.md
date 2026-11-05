@@ -1,10 +1,13 @@
-# Sistema de Gestion de Ventas
+# Sistema de Gestión de Ventas
 
 Aplicación web **ASP.NET Core MVC (.NET 10)** con **Entity Framework Core** y **SQL Server Express** que implementa una **relación uno a muchos** entre dos entidades: **Categoría** (entidad principal) y **Producto** (entidad dependiente). Cada categoría tiene muchos productos y cada producto pertenece a una sola categoría.
 
 **Asignatura:** Programación Integrativa para la Integración de Tecnologías
+
 **Universidad:** Universidad de las Fuerzas Armadas ESPE, Departamento de Ciencias de la Computación
+
 **Actividad:** Relaciones entre entidades, Unidad 1
+
 **Grupo:** 1
 
 ## Tema asignado
@@ -27,7 +30,7 @@ Aplicación web **ASP.NET Core MVC (.NET 10)** con **Entity Framework Core** y *
 
 - ASP.NET Core MVC (.NET 10)
 - Entity Framework Core (Code First con migraciones)
-- SQL Server Express (`localhost\SQLEXPRESS`)
+- SQL Server Express (`localhost\\SQLEXPRESS`)
 - DataAnnotations para las validaciones
 - Bootstrap (plantilla por defecto de MVC)
 
@@ -81,7 +84,7 @@ Archivos modificados: `Controllers/ProductosController.cs`, `Models/Producto.cs`
 
 - Visual Studio con la carga de trabajo *ASP.NET y desarrollo web*
 - SDK de .NET 10
-- SQL Server Express con la instancia `localhost\SQLEXPRESS`
+- SQL Server Express con la instancia `localhost\\SQLEXPRESS`
 - SQL Server Management Studio (SSMS), opcional, para consultar la base de datos
 
 ## Pasos para ejecutar el proyecto
@@ -102,6 +105,6 @@ Archivos modificados: `Controllers/ProductosController.cs`, `Models/Producto.cs`
 
 ## Video de demostración
 
-[Ver video de demostración](PEGAR-AQUI-EL-ENLACE-DEL-VIDEO)
+[Ver video de demostración](https://youtu.be/8AkVIx4clXQ)
 
 Muestra el CRUD de categorías, la creación de un producto eligiendo la categoría en la lista desplegable, un error de validación en español, la lista de productos con el nombre de la categoría y los datos relacionados en SSMS.
